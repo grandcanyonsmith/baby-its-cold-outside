@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Run Code</title>
+  <!-- Include Tailwind CSS from CDN for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Include Axios from CDN for HTTP requests -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <div class="text-center">
+    <button id="runCodeButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Run Code
+    </button>
+    <pre id="outputDisplay" class="mt-4 p-4 bg-gray-200 rounded shadow"></pre>
+  </div>
+
+  <script>
+    const runCodeButton = document.getElementById('runCodeButton');
+    const outputDisplay = document.getElementById('outputDisplay');
+
+    const executeCode = () => {
+      const apiUrl = "https://4x3ubnjm4rwzbwaucrcn2trn3m0vvsqp.lambda-url.us-west-2.on.aws/";
+      const codeExecutionData = {
+        'filePath': 'test.py',
+        'ec2InstanceId': 'i-09a3e0707ffcfdfdb',
+        'code': "print('hello world')",
+        'uId': '11',
+        'projectId': '8'
+      };
+      
+      // Indicate that the code execution is in progress
+      runCodeButton.textContent = 'Running...';
+      runCodeButton.disabled = true;
+
+      // Send the POST request using Axios
+      axios.post(apiUrl, codeExecutionData, {
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      .then(response => {
+        // Display the output from the response
+        const { StandardOutputContent, StandardErrorContent } = response.data;
+        outputDisplay.textContent = `Standard Output: ${StandardOutputContent}\nStandard Error: ${StandardErrorContent}`;
+      })
+      .catch(error => {
+        // Display the error
+        outputDisplay.textContent = `Error: ${error}`;
+      })
+      .finally(() => {
+        // Reset the button state after execution
+        runCodeButton.textContent = 'Run Code';
+        runCodeButton.disabled = false;
+      });
+    };
+
+    runCodeButton.addEventListener('click', executeCode);
+  </script>
+
+</body>
+</html>
