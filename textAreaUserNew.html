@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Import the Tailwind CSS Style Link -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styling to adjust the height of the textarea */
+        .textarea-half-height {
+            height: 50%; /* Reducing the height to half of its original value */
+        }
+    </style>
 </head>
 <body>
     <!-- Textarea with Tailwind CSS styling -->
@@ -13,7 +19,7 @@
         <form action="#" class="relative">
             <div class="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
                 <label for="comment" class="sr-only">Add your comment</label>
-                <textarea rows="3" name="comment" id="comment" class="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Add your comment..."></textarea>
+                <textarea rows="3" name="comment" id="comment" class="block w-full resize-none border-0 bg-transparent py-0.75 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-3 textarea-half-height" placeholder="Add your comment..."></textarea> <!-- Adjusted py-0.75 and sm:leading-3 to effectively reduce the height -->
             </div>
             <div class="absolute inset-x-0 bottom-0 flex justify-end py-2 pr-2">
                 <div class="flex-shrink-0">
