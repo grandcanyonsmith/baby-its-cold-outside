@@ -2,34 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Refactored Text Area</title>
+    <title>Refactored Text Area and Submit Button</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Import the Tailwind CSS Style Link -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Custom styling to adjust the height of the textarea */
-        .textarea-half-height {
-            height: 50%; /* Reducing the height to half of its original value */
+        /* Custom styling to make the submit button part of the textarea */
+        .textarea-container {
+            position: relative;
+        }
+        .submit-button {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
-<body>
-    <!-- Textarea with Tailwind CSS styling -->
-    <div class="min-w-0 flex-1">
+<body class="bg-gray-200 font-sans">
+    <!-- Textarea and submit button container -->
+    <div class="m-4 p-4 bg-white rounded-md shadow textarea-container">
         <form action="#" class="relative">
-            <div class="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-                <label for="comment" class="sr-only">Add your comment</label>
-                <textarea rows="3" name="comment" id="comment" class="block w-full resize-none border-0 bg-transparent py-0.75 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-3 textarea-half-height" placeholder="Add your comment..."></textarea> <!-- Adjusted py-0.75 and sm:leading-3 to effectively reduce the height -->
-            </div>
-            <div class="absolute inset-x-0 bottom-0 flex justify-end py-2 pr-2">
-                <div class="flex-shrink-0">
-                    <button type="submit" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                            <path d="M3.105 2.289a.75.75 0 00-.826.95l1.414 4.925A1.5 1.5 0 005.135 9.25h6.115a.75.75 0 010 1.5H5.135a1.5 1.5 0 00-1.442 1.086l-1.414 4.926a.75.75 0 00.826.95 28.896 28.896 0 0015.293-7.154.75.75 0 000-1.115A28.897 28.897 0 003.105 2.289z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            <label for="comment" class="sr-only">Add your comment</label>
+            <!-- Textarea -->
+            <textarea rows="3" name="comment" id="comment" class="block w-full resize-none border rounded-l-lg py-2 pr-12 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm" placeholder="Add your comment..."></textarea>
+            <!-- Submit button placed inside the text area -->
+            <button type="submit" class="absolute inset-y-0 right-0 mt-px mr-px rounded-r-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none submit-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                    <path d="M3.105 2.289a.75.75 0 00-.826.95l1.414 4.925A1.5 1.5 0 005.135 9.25h6.115a.75.75 0 010 1.5H5.135a1.5 1.5 0 00-1.442 1.086l-1.414 4.926a.75.75 0 00.826.950 28.896 28.896 0 0015.293-7.154.75.75 0 000-1.115A28.897 28.897 0 003.105 2.289z" />
+                </svg>
+            </button>
         </form>
     </div>
 </body>
