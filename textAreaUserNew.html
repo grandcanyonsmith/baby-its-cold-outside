@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Refactored Text Area and Submit Button</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Restrict zooming on input focus -->
     <!-- Import the Tailwind CSS Style Link -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Custom styling to ensure the textarea is at the bottom and to disable zoom on focus in mobile browsers */
+        /* Custom styling to ensure the textarea is at the bottom */
         body, html {
             height: 100%;
             margin: 0;
@@ -28,7 +28,7 @@
             display: flex;
             align-items: center;
         }
-        /* Prevent zoom on focus by setting font-size to 16px or larger */
+        /* Set the font-size to 16px to avoid zoom on focus for mobile browsers without explicitly disabling zooming */
         textarea {
             font-size: 16px;
         }
@@ -53,19 +53,6 @@
             </button>
         </form>
     </div>
-    <script>
-        // When the textarea is focused, scroll it into view just above the keyboard
-        let textarea = document.getElementById('comment');
-        textarea.addEventListener('focus', function() {
-            setTimeout(() => {
-                // Adjust scroll if necessary to bring the textarea above the keyboard
-                if (textarea.scrollIntoViewIfNeeded) {
-                    textarea.scrollIntoViewIfNeeded(true);
-                } else {
-                    textarea.scrollIntoView(false);
-                }
-            }, 300); // Adjust timing for keyboard appearance
-        });
-    </script>
+    <!-- Scripting to manage the focus event removed to prevent zoom on input focus for a better user experience -->
 </body>
 </html>
