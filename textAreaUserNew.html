@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Refactored Text Area and Submit Button</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Restrict zooming on input focus -->
-    <!-- Import the Tailwind CSS Style Link -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Custom styling to ensure the textarea is at the bottom */
         body, html {
             height: 100%;
             margin: 0;
@@ -17,42 +15,43 @@
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 0.5rem;
+            padding: 1rem;
             background: white;
-            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+            border-top: 2px solid #ddd;
         }
         .submit-button {
             position: absolute;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            align-items: center;
+            right: 1rem; /* Align with the padding of the container */
+            bottom: 1rem; /* Align with the padding of the container */
+            z-index: 2; /* Ensures the button is always on top */
         }
-        /* Set the font-size to 16px to avoid zoom on focus for mobile browsers without explicitly disabling zooming */
         textarea {
             font-size: 16px;
+            line-height: 1.5;
+            width: 100%; /* Use full width */
+            padding-bottom: 3rem; /* Space for the button */
+            box-sizing: border-box; /* Border included in width */
+        }
+        form {
+            position: relative; /* Relative positioning for the button */
+            height: 100%;
         }
     </style>
 </head>
-<body class="bg-gray-200 font-sans overflow-hidden">
-    <!-- Fixed Textarea and submit button container at the bottom -->
+<body class="bg-gray-100 font-sans leading-normal overflow-hidden">
     <div class="textarea-container">
-        <form action="#" class="relative w-full">
+        <form action="#" method="post" class="w-full h-full"> <!-- Form now justifies the width and height -->
             <label for="comment" class="sr-only">Add your comment</label>
-            <!-- Fixed Textarea -->
             <textarea rows="3" name="comment" id="comment" 
-                      class="block w-full resize-none border rounded-lg py-2 pr-12 pl-4 text-gray-900 placeholder-gray-400 
-                             focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm"
-                      placeholder="Add your comment..."
-                      ></textarea>
-            <!-- Submit button placed inside the text area -->
-            <button type="submit" class="absolute inset-y-0 right-0 mt-px mr-px rounded-r-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none submit-button">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 9a1 1 0 112 0 1 1 0 01-2 0zm3 1a1 1 0 11-3-1 1 1 0 013 1zm3-2a1 1 0 100-2 1 1 0 000 2zm1 1a1 1 0 11-3-1 1 1 0 013 1z" clip-rule="evenodd" />
-                </svg>
+                      class="resize-none border-2 border-gray-300 rounded-lg p-3 text-gray-900 placeholder-gray-400 
+                             focus:outline-none focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200"
+                      placeholder="Share your thoughts...">
+            </textarea>
+            <button type="submit" class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-bold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300 submit-button">
+                Send
             </button>
         </form>
     </div>
-    <!-- Scripting to manage the focus event removed to prevent zoom on input focus for a better user experience -->
 </body>
 </html>
