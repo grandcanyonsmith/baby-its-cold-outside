@@ -1,33 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Space</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #000; color: #fff; }
-        .container { width: 80%; margin: auto; }
-        header { text-align: center; padding: 2rem 0; }
-        h1 { margin: 0; }
-        .content { margin: 2rem 0; }
-        img { max-width: 100%; height: auto; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 5px;
+  }
+  .cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    cursor: pointer;
+  }
+  .cell.taken {
+    pointer-events: none;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to the Space Exploration Site</h1>
-        </header>
-        <div class="content">
-            <h2>Our Universe</h2>
-            <p>Space is vast and has always been a subject of mystery and intrigue. The universe is filled with wonders like stars, planets, and galaxies.</p>
-            <img src="images/universe.jpg" alt="Universe">
-        </div>
-        <div class="content">
-            <h2>Space Missions</h2>
-            <p>Humanity has embarked on numerous space missions to explore the unknown. From the Apollo moon landings to the Mars rovers, each mission has expanded our understanding of the cosmos.</p>
-            <img src="images/space-mission.jpg" alt="Space Mission">
-        </div>
-    </div>
+<div class="board" id="board">
+  <div class="cell" data-cell-index="0"></div>
+  <div class="cell" data-cell-index="1"></div>
+  <div class="cell" data-cell-index="2"></div>
+  <div class="cell" data-cell-index="3"></div>
+  <div class="cell" data-cell-index="4"></div>
+  <div class="cell" data-cell-index="5"></div>
+  <div class="cell" data-cell-index="6"></div>
+  <div class="cell" data-cell-index="7"></div>
+  <div class="cell" data-cell-index="8"></div>
+</div>
+
+<script>
+const board = document.getElementById('board');
+const cells = document.querySelectorAll('.cell');
+const turnIndicator = 'X';
+const opponentIndicator = 'O';
+let currentPlayer = turnIndicator;
+
+function handleCellClick(event) {
+  const cell = event.target;
+  placeMark(cell, currentPlayer);
+
+  if (checkWin(currentPlayer)) {
+    alert(currentPlayer + ' wins!');
+    // Optionally, implement a reset game functionality
+  } else if (isDraw()) {
+    alert('Draw!');
+    // Optionally, implement a reset game functionality
+  } else {
+    // Switch turns
+    currentPlayer = currentPlayer === turnIndicator ? opponentIndicator : turnIndicator;
+  }
+}
+
+function placeMark(cell, player) {
+  cell.textContent = player;
+  cell.classList.add('taken');
+}
+
+function checkWin(player) {
+  /* This function should check for a win condition given the current state of the board.
+    You'll need to implement the game's logic based on Tic Tac Toe's rules, such as:
+    - Checking horizontal, vertical, and diagonal lines for the same player marker
+    But for simplicity, this code is not implemented here. */
+  return false; // Placeholder: Replace with actual win condition
+}
+
+function isDraw() {
+  // Check if all cells are taken
+  return [...cells].every(cell => cell.classList.contains('taken'));
+}
+
+cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+</script>
 </body>
 </html>
