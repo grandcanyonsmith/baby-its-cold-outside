@@ -17,13 +17,10 @@
     padding: 0;
     margin-right: 10px;
   }
-  #commitFileBtn,
-  #editCodeBtn {
-    height: 10px; /* Resizing the icons to fit the row height */
-    width: auto;
-  }
+  .icon-button img,
   .icon-button svg {
-    height: 100%; /* Make SVG fill the height of the button */
+    height: 10px; /* Ensure icon height matches the row */
+    width: auto;
   }
   .edit-actions {
     display: none;
@@ -39,7 +36,7 @@
     </svg>
   </button>
   <button id="commitFileBtn" class="icon-button">
-    <img src="https://www.svgrepo.com/show/521819/save.svg" alt="Save Icon">
+    <img src="https://www.svgrepo.com/show/521819/save.svg" alt="Save Icon" style="height: 10px;">
   </button>
   <div id="editActions" class="edit-actions">
     <button id="cancelCodeEditBtn" class="icon-button" onclick="toggleEdit(false)">Cancel</button>
@@ -55,7 +52,7 @@
 
     if (editMode) {
       editBtn.style.display = 'none';
-      editActions.style.display = 'block';
+      editActions.style.display = 'flex';
       commitBtn.style.display = 'none';
     } else {
       editBtn.style.display = 'block';
