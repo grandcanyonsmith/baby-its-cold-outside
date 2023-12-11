@@ -8,7 +8,6 @@
   .row {
     display: flex;
     align-items: center;
-    height: 10px;
   }
   .icon-button {
     border: none;
@@ -19,8 +18,8 @@
   }
   .icon-button img,
   .icon-button svg {
-    height: 10px; /* Ensure icon height matches the row */
-    width: auto;
+    height: 10px; /* Establishing a consistent icon height */
+    width: auto; /* Width will scale proportionally */
   }
   .edit-actions {
     display: none;
@@ -36,7 +35,7 @@
     </svg>
   </button>
   <button id="commitFileBtn" class="icon-button">
-    <img src="https://www.svgrepo.com/show/521819/save.svg" alt="Save Icon" style="height: 10px;">
+    <img src="https://www.svgrepo.com/show/521819/save.svg" alt="Save Icon" style="height: 10px; display: block;">
   </button>
   <div id="editActions" class="edit-actions">
     <button id="cancelCodeEditBtn" class="icon-button" onclick="toggleEdit(false)">Cancel</button>
